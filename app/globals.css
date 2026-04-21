@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --rose: #f4a7b9;
+  --rose-light: #fce4ec;
+  --rose-dark: #e91e8c;
+  --gold: #c9a84c;
+  --gold-light: #f0d080;
+  --gold-dark: #a07830;
+  --cream: #fff8f0;
+}
+
+body {
+  background-color: var(--cream);
+  color: #2d2d2d;
+  font-family: 'Georgia', serif;
+}
+
+.font-script {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #c9a84c, #f0d080, #c9a84c);
+}
+
+.rose-gradient {
+  background: linear-gradient(135deg, #f8bbd0, #fce4ec, #f48fb1);
+}
+
+.card-elegant {
+  background: linear-gradient(135deg, #fff0f5, #fff8f0);
+  border: 1px solid #f0d080;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, #c9a84c, #f0d080, #c9a84c);
+  color: white;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5);
+}
+
+.btn-rose {
+  background: linear-gradient(135deg, #f48fb1, #f8bbd0, #f48fb1);
+  color: white;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.4);
+}
+
+.btn-rose:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244, 143, 177, 0.5);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c9a84c;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f0d080;
+  padding-bottom: 0.5rem;
+}
+
+input, select, textarea {
+  border: 1px solid #f0d080;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+}
