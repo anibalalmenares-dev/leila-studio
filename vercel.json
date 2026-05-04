@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cancelar-expiradas",
-      "schedule": "*/5 * * * *"
+      "schedule": "0 * * * *"
     }
   ]
 }
