@@ -17,3 +17,5 @@ next-env.d.ts
 # misc
 .DS_Store
 node_modules
+
+.vercel

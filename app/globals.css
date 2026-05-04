@@ -1,86 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --rose: #f4a7b9;
-  --rose-light: #fce4ec;
-  --rose-dark: #e91e8c;
-  --gold: #c9a84c;
-  --gold-light: #f0d080;
-  --gold-dark: #a07830;
-  --cream: #fff8f0;
+  --c-primary: #c9a84c;
+  --c-primary-dark: #a07830;
+  --c-primary-light: #f0d080;
+  --c-primary-bg: #fff0f5;
+  --c-secondary: #e91e8c;
+  --c-secondary-bg: #fce4ec;
+  --c-bg-from: #fff0f5;
+  --c-bg-to: #fff8f0;
+  --c-border-soft: #f0e0e8;
+  --c-card-shadow: rgba(201,168,76,0.28);
+  --c-card-shadow-base: rgba(0,0,0,0.08);
 }
 
 body {
-  background-color: var(--cream);
+  background-color: var(--c-bg-to);
   color: #2d2d2d;
-  font-family: 'Georgia', serif;
+  font-family: 'Georgia', serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
+}
+
+* {
+  font-family: inherit;
 }
 
 .font-script {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: 'Georgia', 'Times New Roman', serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji';
   font-style: italic;
 }
 
+/* Forzar renderizado de emojis en color en todos los elementos */
+@supports (font-variant-emoji: emoji) {
+  * { font-variant-emoji: emoji; }
+}
+
 .gold-gradient {
-  background: linear-gradient(135deg, #c9a84c, #f0d080, #c9a84c);
+  background: linear-gradient(135deg, var(--c-primary), var(--c-primary-light), var(--c-primary));
 }
 
 .rose-gradient {
-  background: linear-gradient(135deg, #f8bbd0, #fce4ec, #f48fb1);
+  background: linear-gradient(135deg, var(--c-secondary-bg), var(--c-primary-bg), var(--c-secondary-bg));
 }
 
 .card-elegant {
-  background: linear-gradient(135deg, #fff0f5, #fff8f0);
-  border: 1px solid #f0d080;
+  background: linear-gradient(135deg, var(--c-primary-bg), var(--c-bg-to));
+  border: 1px solid var(--c-primary-light);
   border-radius: 1rem;
-  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.15);
+  box-shadow: 0 4px 16px var(--c-card-shadow-base), 0 8px 32px var(--c-card-shadow);
 }
 
 .btn-gold {
-  background: linear-gradient(135deg, #c9a84c, #f0d080, #c9a84c);
+  background: linear-gradient(135deg, var(--c-primary), var(--c-primary-light), var(--c-primary));
   color: white;
   font-weight: 600;
   border-radius: 9999px;
   padding: 0.75rem 2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.4);
+  box-shadow: 0 4px 15px var(--c-card-shadow);
   text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .btn-gold:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.5);
+  box-shadow: 0 6px 20px var(--c-card-shadow);
 }
 
 .btn-rose {
-  background: linear-gradient(135deg, #f48fb1, #f8bbd0, #f48fb1);
+  background: linear-gradient(135deg, var(--c-secondary), color-mix(in srgb, var(--c-secondary) 60%, white), var(--c-secondary));
   color: white;
   font-weight: 600;
   border-radius: 9999px;
   padding: 0.75rem 2rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(244, 143, 177, 0.4);
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--c-secondary) 30%, transparent);
 }
 
 .btn-rose:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(244, 143, 177, 0.5);
 }
 
 .section-title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #c9a84c;
+  color: var(--c-primary);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #f0d080;
+  border-bottom: 2px solid var(--c-primary-light);
   padding-bottom: 0.5rem;
 }
 
 input, select, textarea {
-  border: 1px solid #f0d080;
+  border: 1px solid var(--c-primary-light);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -90,6 +102,6 @@ input, select, textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: #c9a84c;
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--c-primary) 15%, transparent);
 }

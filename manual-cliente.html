@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=390, initial-scale=1.0" />
+  <title>Manual Cliente – Leila Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --rose:       #f4a7b9;
+      --rose-light: #fce4ec;
+      --rose-dark:  #e91e8c;
+      --gold:       #c9a84c;
+      --gold-light: #f0d080;
+      --cream:      #fff8f0;
+      --dark:       #2d2d2d;
+      --w: 390px;
+      --h: 844px;
+    }
+
+    body {
+      background: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0 48px;
+      font-family: Georgia, 'Times New Roman', serif;
+    }
+
+    /* ── Story card ── */
+    .card {
+      width: var(--w);
+      height: var(--h);
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* slide counter badge */
+    .badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,.3);
+      backdrop-filter: blur(6px);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      letter-spacing: .5px;
+    }
+
+    /* ══ SLIDE 1 – Portada ══ */
+    .s1 {
+      background: linear-gradient(160deg, #fce4ec 0%, #fff8f0 45%, #f0d080 100%);
+    }
+    .s1 .crown { font-size: 72px; margin-bottom: 12px; }
+    .s1 h1 {
+      font-size: 36px;
+      color: #c9a84c;
+      font-style: italic;
+      line-height: 1.15;
+      text-shadow: 0 1px 2px rgba(0,0,0,.1);
+    }
+    .s1 h1 span { display: block; font-size: 22px; color: #e91e8c; margin-top: 4px; }
+    .s1 .sub {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #555;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .s1 .tag {
+      margin-top: 28px;
+      background: linear-gradient(135deg, #c9a84c, #f0d080);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 28px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      letter-spacing: .6px;
+      box-shadow: 0 4px 12px rgba(201,168,76,.4);
+    }
+    .s1 .footer {
+      position: absolute;
+      bottom: 28px;
+      font-size: 12px;
+      color: #aaa;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ══ SLIDE 2 – Servicios ══ */
+    .s2 {
+      background: linear-gradient(160deg, #2d2d2d 0%, #1a1a1a 100%);
+      padding: 40px 28px;
+      justify-content: flex-start;
+    }
+    .s2 .title-block { width: 100%; margin-bottom: 24px; }
+    .s2 .step-num {
+      font-size: 13px;
+      color: #c9a84c;
+      font-family: Arial, sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .s2 h2 { font-size: 28px; color: #f0d080; font-style: italic; }
+    .s2 .grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .svc-card {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 16px;
+      padding: 14px 10px;
+    }
+    .svc-card .ico { font-size: 28px; margin-bottom: 6px; }
+    .svc-card .name {
+      font-size: 13px;
+      color: #fce4ec;
+      font-family: Arial, sans-serif;
+      line-height: 1.3;
+    }
+    .svc-card .price {
+      margin-top: 6px;
+      font-size: 13px;
+      font-family: Arial, sans-serif;
+      color: #f0d080;
+      font-weight: bold;
+    }
+    .s2 .note {
+      margin-top: 18px;
+      font-size: 12px;
+      color: #888;
+      font-family: Arial, sans-serif;
+    }
+
+    /* ══ SLIDE 3 – Cómo reservar ══ */
+    .s3 {
+      background: linear-gradient(160deg, #fce4ec 0%, #fff8f0 100%);
+      padding: 44px 32px;
+      justify-content: flex-start;
+    }
+    .s3 .step-num { font-size: 13px; color: #e91e8c; font-family: Arial,sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .s3 h2 { font-size: 28px; color: #2d2d2d; font-style: italic; margin-bottom: 28px; }
+    .step-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      min-width: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e91e8c, #f4a7b9);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(233,30,140,.3);
+    }
+    .step-text h3 {
+      font-size: 16px;
+      color: #2d2d2d;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+    .step-text p {
+      font-size: 13px;
+      color: #666;
+      font-family: Arial, sans-serif;
+      line-height: 1.4;
+    }
+    .s3 .url-box {
+      margin-top: 24px;
+      background: linear-gradient(135deg, #c9a84c, #f0d080);
+      border-radius: 14px;
+      padding: 14px 20px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .s3 .url-box span { font-size: 22px; }
+    .s3 .url-box p { font-size: 13px; font-family: Arial,sans-serif; color: #2d2d2d; line-height: 1.4; }
+    .s3 .url-box strong { font-size: 14px; }
+
+    /* ══ SLIDE 4 – Fecha y hora ══ */
+    .s4 {
+      background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 44px 32px;
+      justify-content: flex-start;
+    }
+    .s4 .step-num { font-size: 13px; color: #f0d080; font-family: Arial,sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .s4 h2 { font-size: 28px; color: #f0d080; font-style: italic; margin-bottom: 28px; }
+    .info-block {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(201,168,76,.25);
+      border-radius: 16px;
+      padding: 18px 20px;
+      width: 100%;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+    .info-block .ico { font-size: 32px; }
+    .info-block .txt h3 { font-size: 15px; font-family: Arial,sans-serif; font-weight: bold; color: #f4a7b9; margin-bottom: 3px; }
+    .info-block .txt p { font-size: 13px; font-family: Arial,sans-serif; color: #ccc; line-height: 1.4; }
+    .s4 .tip {
+      margin-top: 8px;
+      font-size: 12px;
+      font-family: Arial,sans-serif;
+      color: #888;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* ══ SLIDE 5 – Tus datos ══ */
+    .s5 {
+      background: linear-gradient(160deg, #fce4ec 0%, #fff0f5 100%);
+      padding: 44px 32px;
+      justify-content: flex-start;
+    }
+    .s5 .step-num { font-size: 13px; color: #e91e8c; font-family: Arial,sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .s5 h2 { font-size: 28px; color: #2d2d2d; font-style: italic; margin-bottom: 20px; }
+    .field-mock {
+      width: 100%;
+      background: #fff;
+      border: 2px solid #f4a7b9;
+      border-radius: 14px;
+      padding: 14px 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .field-mock .ico { font-size: 22px; }
+    .field-mock .lbl { font-size: 14px; font-family: Arial,sans-serif; color: #888; }
+    .s5 .resumen {
+      width: 100%;
+      background: linear-gradient(135deg, #e91e8c22, #f4a7b922);
+      border: 1px solid #f4a7b9;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-top: 8px;
+    }
+    .s5 .resumen h4 { font-size: 14px; font-family: Arial,sans-serif; font-weight: bold; color: #e91e8c; margin-bottom: 10px; }
+    .s5 .resumen .row { display: flex; justify-content: space-between; font-size: 13px; font-family: Arial,sans-serif; color: #555; margin-bottom: 6px; }
+    .s5 .resumen .row.total { font-weight: bold; color: #2d2d2d; border-top: 1px solid #f4a7b9; padding-top: 8px; margin-top: 4px; }
+
+    /* ══ SLIDE 6 – Pago ══ */
+    .s6 {
+      background: linear-gradient(160deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 44px 30px;
+      justify-content: flex-start;
+    }
+    .s6 .step-num { font-size: 13px; color: #f0d080; font-family: Arial,sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .s6 h2 { font-size: 28px; color: #f0d080; font-style: italic; margin-bottom: 22px; }
+    .pay-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+    .pay-num {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9a84c, #f0d080);
+      color: #2d2d2d;
+      font-size: 15px;
+      font-weight: bold;
+      font-family: Arial,sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pay-txt h3 { font-size: 15px; font-family: Arial,sans-serif; font-weight: bold; color: #fce4ec; margin-bottom: 2px; }
+    .pay-txt p { font-size: 13px; font-family: Arial,sans-serif; color: #aaa; line-height: 1.4; }
+    .s6 .methods {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .method-card {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .method-card .ico { font-size: 28px; margin-bottom: 6px; }
+    .method-card .name { font-size: 13px; font-family: Arial,sans-serif; font-weight: bold; color: #f0d080; margin-bottom: 4px; }
+    .method-card .num { font-size: 12px; font-family: Arial,sans-serif; color: #ccc; }
+
+    /* ══ SLIDE 7 – WhatsApp ══ */
+    .s7 {
+      background: linear-gradient(160deg, #064e3b 0%, #065f46 100%);
+      padding: 44px 32px;
+      justify-content: flex-start;
+    }
+    .s7 .step-num { font-size: 13px; color: #6ee7b7; font-family: Arial,sans-serif; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .s7 h2 { font-size: 28px; color: #fff; font-style: italic; margin-bottom: 22px; }
+    .wa-bubble {
+      background: #1c3a30;
+      border-radius: 18px 18px 18px 4px;
+      padding: 16px 18px;
+      width: 100%;
+      margin-bottom: 14px;
+    }
+    .wa-bubble p { font-size: 14px; font-family: Arial,sans-serif; color: #d1fae5; line-height: 1.6; }
+    .s7 .wa-btn {
+      margin-top: 16px;
+      background: #25d366;
+      border-radius: 999px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-family: Arial,sans-serif;
+      font-weight: bold;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(37,211,102,.4);
+    }
+    .s7 .warn {
+      margin-top: 22px;
+      background: rgba(255,255,255,.08);
+      border-left: 3px solid #fbbf24;
+      border-radius: 0 12px 12px 0;
+      padding: 12px 14px;
+      width: 100%;
+    }
+    .s7 .warn p { font-size: 12px; font-family: Arial,sans-serif; color: #fde68a; line-height: 1.5; }
+
+    /* ══ SLIDE 8 – Cierre ══ */
+    .s8 {
+      background: linear-gradient(160deg, #fce4ec 0%, #fff8f0 50%, #f0d080 100%);
+    }
+    .s8 .crown { font-size: 60px; margin-bottom: 12px; }
+    .s8 h2 { font-size: 30px; color: #c9a84c; font-style: italic; line-height: 1.2; }
+    .s8 h2 span { display: block; font-size: 20px; color: #e91e8c; margin-top: 4px; }
+    .s8 .checks {
+      margin-top: 24px;
+      width: 80%;
+      text-align: left;
+    }
+    .s8 .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-family: Arial,sans-serif;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .s8 .check-row .dot {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e91e8c, #f4a7b9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: #fff;
+    }
+    .s8 .horario {
+      margin-top: 22px;
+      background: linear-gradient(135deg, #c9a84c, #f0d080);
+      border-radius: 14px;
+      padding: 14px 24px;
+      text-align: center;
+    }
+    .s8 .horario p { font-size: 14px; font-family: Arial,sans-serif; color: #2d2d2d; line-height: 1.6; }
+    .s8 .horario strong { font-size: 16px; }
+
+    /* print helper */
+    .print-tip {
+      color: #666;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      text-align: center;
+      padding: 8px 0;
+    }
+
+    @media print {
+      body { background: #fff; gap: 0; padding: 0; }
+      .print-tip { display: none; }
+      .card { border-radius: 0; page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+<p class="print-tip">💡 Captura cada tarjeta para subirla como estado de WhatsApp</p>
+
+<!-- ═══ SLIDE 1 – PORTADA ═══ -->
+<div class="card s1">
+  <div class="badge">1 / 8</div>
+  <div class="crown">👑</div>
+  <h1>Leila Studio<span>Nails Beauty</span></h1>
+  <p class="sub">¿Cómo reservar tu cita<br>paso a paso?<br><br>📱 Todo desde tu celular<br>en menos de 3 minutos</p>
+  <div class="tag">GUÍA PARA CLIENTES</div>
+  <p class="footer">💅 Uñas · Manicura · Pedicura</p>
+</div>
+
+<!-- ═══ SLIDE 2 – SERVICIOS ═══ -->
+<div class="card s2">
+  <div class="badge">2 / 8</div>
+  <div class="title-block">
+    <div class="step-num">NUESTROS SERVICIOS</div>
+    <h2>Elige lo que más<br>te gusta ✨</h2>
+  </div>
+  <div class="grid">
+    <div class="svc-card">
+      <div class="ico">💅</div>
+      <div class="name">Manicura<br>Tradicional</div>
+      <div class="price">desde $12.000</div>
+    </div>
+    <div class="svc-card">
+      <div class="ico">🦶</div>
+      <div class="name">Pedicura<br>Tradicional</div>
+      <div class="price">desde $20.000</div>
+    </div>
+    <div class="svc-card">
+      <div class="ico">✨</div>
+      <div class="name">Semi<br>Permanente</div>
+      <div class="price">desde $30.000</div>
+    </div>
+    <div class="svc-card">
+      <div class="ico">🌟</div>
+      <div class="name">Gel &amp;<br>Press On</div>
+      <div class="price">desde $45.000</div>
+    </div>
+    <div class="svc-card">
+      <div class="ico">🌸</div>
+      <div class="name">Combos<br>Mani + Pedi</div>
+      <div class="price">desde $50.000</div>
+    </div>
+    <div class="svc-card">
+      <div class="ico">👑</div>
+      <div class="name">Paquetes<br>Especiales</div>
+      <div class="price">hasta $82.000</div>
+    </div>
+  </div>
+  <p class="note">Los precios exactos se muestran al seleccionar el servicio</p>
+</div>
+
+<!-- ═══ SLIDE 3 – CÓMO RESERVAR ═══ -->
+<div class="card s3">
+  <div class="badge">3 / 8</div>
+  <div style="width:100%; margin-bottom:20px;">
+    <div class="step-num">¿CÓMO RESERVAR?</div>
+    <h2>4 pasos súper fáciles 🌸</h2>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">1</div>
+    <div class="step-text">
+      <h3>Abre el link de reserva</h3>
+      <p>Ingresa a nuestra página web desde tu celular o computador</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">2</div>
+    <div class="step-text">
+      <h3>Elige tu servicio</h3>
+      <p>Selecciona el servicio que deseas: manicura, pedicura, combo o más</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">3</div>
+    <div class="step-text">
+      <h3>Escoge fecha y hora</h3>
+      <p>Selecciona el día que prefieras y elige entre las horas disponibles</p>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-circle">4</div>
+    <div class="step-text">
+      <h3>Ingresa tus datos</h3>
+      <p>Solo tu nombre completo y número de WhatsApp</p>
+    </div>
+  </div>
+  <div class="url-box" style="background: linear-gradient(135deg, #c9a84c, #f0d080); border-radius:14px; padding:14px 18px; width:100%; display:flex; align-items:center; gap:10px; margin-top:16px;">
+    <span>🔗</span>
+    <p style="font-size:13px; font-family:Arial,sans-serif; color:#2d2d2d; line-height:1.4;">Pide el link a Leila por WhatsApp<br><strong>¡Es rápido y sencillo!</strong></p>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 4 – FECHA Y HORA ═══ -->
+<div class="card s4">
+  <div class="badge">4 / 8</div>
+  <div style="width:100%; margin-bottom:20px;">
+    <div class="step-num">PASO 2</div>
+    <h2>Fecha y hora<br>disponible 📅</h2>
+  </div>
+  <div class="info-block">
+    <div class="ico">📅</div>
+    <div class="txt">
+      <h3>Selecciona la fecha</h3>
+      <p>Escoge cualquier día desde hoy. El calendario solo muestra fechas válidas.</p>
+    </div>
+  </div>
+  <div class="info-block">
+    <div class="ico">🕐</div>
+    <div class="txt">
+      <h3>Elige la hora libre</h3>
+      <p>Solo verás las horas disponibles según la duración del servicio elegido.</p>
+    </div>
+  </div>
+  <div class="info-block">
+    <div class="ico">⏰</div>
+    <div class="txt">
+      <h3>Horario de atención</h3>
+      <p>Lunes a Sábado<br><strong style="color:#f0d080;">7:00 AM — 6:00 PM</strong></p>
+    </div>
+  </div>
+  <p class="tip">Las horas que ya están ocupadas no aparecen,<br>así siempre eliges una disponible ✅</p>
+</div>
+
+<!-- ═══ SLIDE 5 – TUS DATOS ═══ -->
+<div class="card s5">
+  <div class="badge">5 / 8</div>
+  <div style="width:100%; margin-bottom:16px;">
+    <div class="step-num" style="font-size:13px; color:#e91e8c; font-family:Arial,sans-serif; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px;">PASO 3</div>
+    <h2 style="font-size:28px; color:#2d2d2d; font-style:italic;">Tus datos de<br>contacto 📋</h2>
+  </div>
+  <div class="field-mock">
+    <div class="ico">👤</div>
+    <div class="lbl">Nombre completo</div>
+  </div>
+  <div class="field-mock">
+    <div class="ico">📱</div>
+    <div class="lbl">Número de WhatsApp</div>
+  </div>
+  <div class="resumen">
+    <h4>📋 Resumen de tu cita</h4>
+    <div class="row"><span>Servicio</span><span>Manicura semi</span></div>
+    <div class="row"><span>Fecha</span><span>Viernes 25 abr</span></div>
+    <div class="row"><span>Hora</span><span>10:00 AM</span></div>
+    <div class="row"><span>Precio total</span><span>$35.000</span></div>
+    <div class="row total"><span>Anticipo (30%)</span><span style="color:#e91e8c;">$10.500</span></div>
+  </div>
+  <p style="margin-top:14px; font-size:12px; font-family:Arial,sans-serif; color:#999; text-align:center;">El resumen se calcula automáticamente 😊</p>
+</div>
+
+<!-- ═══ SLIDE 6 – PAGO ═══ -->
+<div class="card s6">
+  <div class="badge">6 / 8</div>
+  <div style="width:100%; margin-bottom:20px;">
+    <div class="step-num">PASO 4 – PAGO</div>
+    <h2>Anticipo del 30% 💳</h2>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">1</div>
+    <div class="pay-txt">
+      <h3>Recibe la confirmación</h3>
+      <p>Verás el monto exacto del anticipo a pagar para asegurar tu cita</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">2</div>
+    <div class="pay-txt">
+      <h3>Elige cómo pagar</h3>
+      <p>Nequi o Bancolombia. Los datos aparecen en pantalla.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">3</div>
+    <div class="pay-txt">
+      <h3>Envía el comprobante</h3>
+      <p>Haz el pago y envía la foto del comprobante por WhatsApp</p>
+    </div>
+  </div>
+  <div class="methods">
+    <div class="method-card">
+      <div class="ico">📱</div>
+      <div class="name">Nequi</div>
+      <div class="num">Número en pantalla</div>
+    </div>
+    <div class="method-card">
+      <div class="ico">🏦</div>
+      <div class="name">Bancolombia</div>
+      <div class="num">Número en pantalla</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 7 – WHATSAPP ═══ -->
+<div class="card s7">
+  <div class="badge">7 / 8</div>
+  <div style="width:100%; margin-bottom:20px;">
+    <div class="step-num">ÚLTIMO PASO</div>
+    <h2>Envía tu<br>comprobante 📲</h2>
+  </div>
+  <div class="wa-bubble">
+    <p>Hola Leila! 👋<br>Acabo de hacer la reserva para el<br><strong>Viernes 25 abr a las 10:00 AM</strong>.<br><br>Te envío el comprobante del anticipo.<br>¡Nos vemos pronto! 💅</p>
+  </div>
+  <div class="wa-btn">
+    <span>💬</span>
+    Enviar por WhatsApp
+  </div>
+  <div class="warn">
+    <p>⚠️ <strong>Recuerda:</strong> El anticipo no es reembolsable si cancelas con menos de 24 horas de anticipación. ¡Tu cita se confirma cuando Leila recibe el pago!</p>
+  </div>
+</div>
+
+<!-- ═══ SLIDE 8 – CIERRE ═══ -->
+<div class="card s8">
+  <div class="badge">8 / 8</div>
+  <div class="crown">💅</div>
+  <h2>¡Listo!<br>Tu cita está<br>reservada<span>Te esperamos 🌸</span></h2>
+  <div class="checks">
+    <div class="check-row"><div class="dot">✓</div><span>Elige servicio, fecha y hora</span></div>
+    <div class="check-row"><div class="dot">✓</div><span>Ingresa nombre y WhatsApp</span></div>
+    <div class="check-row"><div class="dot">✓</div><span>Paga el 30% de anticipo</span></div>
+    <div class="check-row"><div class="dot">✓</div><span>Envía comprobante</span></div>
+    <div class="check-row"><div class="dot">✓</div><span>¡Espera confirmación!</span></div>
+  </div>
+  <div class="horario">
+    <p>⏰ Horario de atención<br><strong>Lun – Sáb &nbsp;|&nbsp; 7:00 AM – 6:00 PM</strong><br>📍 Reservas 100% online</p>
+  </div>
+</div>
+
+</body>
+</html>

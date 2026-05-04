@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ThemeLoader from "./components/ThemeLoader";
 
 export const metadata: Metadata = {
   title: "Leila Studio — Nails Beauty",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        <ThemeLoader />
+        {children}
+      </body>
     </html>
   );
 }
